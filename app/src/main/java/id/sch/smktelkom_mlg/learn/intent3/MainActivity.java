@@ -30,6 +30,13 @@ dialPhoneNumber("0341712500");
 composeSmsMessage("Pesan dari SMK Telkom Malang");
             }
         });
+        findViewById(R.id.imageViewBrowser).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+openWebPage("http://www.smktelkom-mlg.sch.id");
+            }
+        });
+
     }
 
     public void dialPhoneNumber(String phoneNumber){
@@ -45,14 +52,11 @@ composeSmsMessage("Pesan dari SMK Telkom Malang");
         if(intent.resolveActivity(getPackageManager()) !=null)
             startActivity(intent);
     }
+    public void openWebPage(String url){
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW,webpage);
+        if(intent.resolveActivity(getPackageManager()) !=null)
+            startActivity(intent);
+    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-    if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-        Bitmap bitmap = data.getParcelableExtra("data");
-        ImageView iv = (ImageView) findViewById(R.id.imageViewCamera);
-        iv.setImageBitmap(bitmap);
-    }
-    }
 }
